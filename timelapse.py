@@ -24,14 +24,15 @@ for i in range(numphotos):
     camera.capture('/home/pi/Pictures/image{0:06d}.jpg'.format(i))
     sleep(secondsinterval)
 print("Done taking photos.")
-print("Please standby as your timelapse video is created.")
-
-system('ffmpeg -r {} -f image2 -s 1024x768 -nostats -loglevel 0 -pattern_type glob -i "/home/pi/Pictures/*.jpg" -vcodec libx264 -crf 25  -pix_fmt yuv420p /home/pi/Videos/{}.mp4'.format(fps, datetimeformat))
 
 usbdir= '/media/pi/8825-920F/{}/'.format(datetimeformat)
-print("Moving photos to backup storage ".format(usbdir))
+print("Copying photos to backup storage ".format(usbdir))
 system('mkdir {}'.format(usbdir))
-system('mv /home/pi/Pictures/*.jpg {}'.format(usbdir))
+system('cp /home/pi/Pictures/*.jpg {}'.format(usbdir))
+
+print("Please standby as your timelapse video is created.")
+
+#system('ffmpeg -r {} -f image2 -s 1024x768 -nostats -loglevel 0 -pattern_type glob -i "/home/pi/Pictures/*.jpg" -vcodec libx264 -crf 25  -pix_fmt yuv420p /home/pi/Videos/{}.mp4'.format(fps, datetimeformat))
 
 #system('rm /home/pi/Pictures/*.jpg')
 print('Timelapse video is complete. Video saved as /home/pi/Videos/{}.mp4'.format(datetimeformat))
