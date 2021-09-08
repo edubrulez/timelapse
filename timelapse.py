@@ -25,7 +25,7 @@ for i in range(numphotos):
     sleep(secondsinterval)
 print("Done taking photos.")
 
-usbdir = '/media/pi/8825-920F/{}/'.format(datetimeformat)
+usbdir = '/media/pi/usb_drive/{}/'.format(datetimeformat)
 print("Copying photos to backup storage ".format(usbdir))
 system('mkdir {}'.format(usbdir))
 system('cp /home/pi/Pictures/*.jpg {}'.format(usbdir))
